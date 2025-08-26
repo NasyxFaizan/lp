@@ -48,4 +48,15 @@ document.addEventListener("DOMContentLoaded", () => {
   observer.observe(section);
 });
 
-//1
+// Scroll progress bar
+const progressBar = document.getElementById('scrollProgressBar');
+function updateScrollProgress() {
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const progress = Math.min(100, Math.max(0, (scrollTop / docHeight) * 100));
+  progressBar.style.width = progress + '%';
+}
+
+window.addEventListener('scroll', updateScrollProgress, { passive: true });
+window.addEventListener('resize', updateScrollProgress);
+updateScrollProgress();
